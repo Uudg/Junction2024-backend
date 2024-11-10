@@ -54,12 +54,13 @@ export default async (app, opts) => {
             let job_list = [];
             try {
                 const jobPromises = top_jobs.map((el) => {
-                    return axios.post(`${url}/find_jobs_${provider}`, {
+                    const payload = {
                         country: location.country,
                         city: location.city,
                         role: el,
                         results_wanted: 2,
-                    });
+                    };
+                    return axios.post(`${url}/find_jobs_${provider}`, payload);
                 });
 
                 const jobResults = await Promise.all(jobPromises);
@@ -67,6 +68,7 @@ export default async (app, opts) => {
                     job_list = job_list.concat(result.data);
                 });
             } catch (error) {
+                console.log(error);
                 return res.status(500).send({ error: error.message });
             }
 
