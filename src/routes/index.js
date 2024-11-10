@@ -103,7 +103,11 @@ export default async (app, opts) => {
                     const key = `${job.title}-${job.company}`;
                     const rankedJob = rankedMap.get(key);
                     if (rankedJob) {
-                        return { ...job, rating: rankedJob.rating };
+                        return {
+                            ...job,
+                            rating: rankedJob.rating,
+                            sentences: rankedJob.sentences,
+                        };
                     }
                     return job;
                 });

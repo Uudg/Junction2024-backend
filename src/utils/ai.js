@@ -38,7 +38,7 @@ export const rate_jobs = async (jobs, person) => {
                     jobs
                 )} for a person with such characterstic: ${JSON.stringify(
                     person
-                )}. The rating should be from 1-10. Return the ratings separated by a new line. Rate how the person fits the job and especcially a company. Return only an array of all objects with the company name, job title and a rating. Count if it is big company or startup, if there are benefits which would suit exact person etc. Example: [{company: "company name", job_title: "job_title", rating: 5}, {company: "company name", job_title: "job_title", rating: 3}]. Return all the job offers. Don't include any addition commments from your side at all - only JSON. Your response is readed by machine
+                )}. The rating should be from 1-10. Return the ratings separated by a new line. Rate how the person fits the job and especcially a company. Return only an array of all objects with the company name, job title and a rating. Also make a list of three short sentences why does it suit the user (you must response like you talk to a user as a friend). Count if it is big company or startup, if there are benefits which would suit exact person etc. Response Example: [{company: "company name", job_title: "job_title", rating: 5, sentences: [""]}, {company: "company name", job_title: "job_title", rating: 3}, sentences: [""]]. Return all the job offers. Don't include any addition commments from your side at all - only JSON. Your response is readed by machine
             `,
             },
         ],
