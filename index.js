@@ -5,7 +5,7 @@ import "dotenv/config";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import fastifyMultipart from "@fastify/multipart";
-
+process.env.NODE_ENV = "production";
 const __filename = fileURLToPath(import.meta.url);
 export const __dirname = dirname(__filename);
 
