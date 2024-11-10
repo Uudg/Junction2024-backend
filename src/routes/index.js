@@ -1,5 +1,5 @@
 import axios from "axios";
-import pdfParse from "pdf-parse";
+// import pdfParse from "pdf-parse";
 import { read_pdf, rate_jobs } from "../utils/ai.js";
 
 const url = process.env.API_URL;
@@ -23,28 +23,28 @@ export default async (app, opts) => {
         }
     });
 
-    app.post("/data", async (req, res) => {
-        const data = await req.file();
-        if (!data) {
-            return res.status(400).send({ error: "File not found" });
-        }
+    // app.post("/data", async (req, res) => {
+    //     const data = await req.file();
+    //     if (!data) {
+    //         return res.status(400).send({ error: "File not found" });
+    //     }
 
-        try {
-            const pdfBuffer = await data.toBuffer();
-            const pdfData = await pdfParse(pdfBuffer);
+    //     try {
+    //         const pdfBuffer = await data.toBuffer();
+    //         const pdfData = await pdfParse(pdfBuffer);
 
-            const text = pdfData.text;
+    //         const text = pdfData.text;
 
-            const aiResponse = await read_pdf(text);
-            const messages = aiResponse.content[0].text.split("\n");
-            return res.send(messages);
-        } catch (error) {
-            res.status(500).send({
-                error: "Failed to parse PDF",
-                details: error.message,
-            });
-        }
-    });
+    //         const aiResponse = await read_pdf(text);
+    //         const messages = aiResponse.content[0].text.split("\n");
+    //         return res.send(messages);
+    //     } catch (error) {
+    //         res.status(500).send({
+    //             error: "Failed to parse PDF",
+    //             details: error.message,
+    //         });
+    //     }
+    // });
 
     app.post("/jobs", async (req, res) => {
         const { top_feedback, top_traits, top_jobs, provider } = req.body;
