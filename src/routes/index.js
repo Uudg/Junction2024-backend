@@ -47,15 +47,16 @@ export default async (app, opts) => {
     // });
 
     app.post("/jobs", async (req, res) => {
-        const { top_feedback, top_traits, top_jobs, provider } = req.body;
+        const { top_feedback, top_traits, top_jobs, provider, location } =
+            req.body;
 
         try {
             let job_list = [];
             try {
                 const jobPromises = top_jobs.map((el) => {
                     return axios.post(`${url}/find_jobs_${provider}`, {
-                        country: "USA",
-                        city: "NY",
+                        country: location.country,
+                        city: location.city,
                         role: el,
                         results_wanted: 2,
                     });
